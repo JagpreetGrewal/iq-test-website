@@ -1,16 +1,57 @@
 const express = require('express');
 const cors = require('cors');
-
+const mongoose = require('mongoose');
+const ProblemSet = require('./models/ProblemSets');
+require('dotenv').config({ path: '../.env' });
 const app = express();
+
+
 
 // Middleware
 app.use(cors());
 app.use(express.json()); // for parsing application/json
 
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log("Connected to MongoDB"))
+    .catch(err => console.error("Could not connect to MongoDB:", err));
+
+
+
 // Basic Route
 app.get('/', (req, res) => {
     res.send('Hello, world!');
 });
+
+app.get('/api/problemsets', async (req, res) => {
+    try {
+        const problemSets = await ProblemSet.find({});
+        res.json(problemSets);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
+app.get('/api/problemsets/:id', async (req, res) => {
+    const { id } = req.params; // Extracting the ID from the request parameters
+
+    try {
+        // Using findById to get a single document by its ID
+        const problemSet = await ProblemSet.findById(id);
+
+        // If no problem set is found, return a 404 not found response
+        if (!problemSet) {
+            return res.status(404).json({ message: "Problem set not found" });
+        }
+
+        // Sending back the found problem set
+        res.json(problemSet);
+    } catch (err) {
+        // If an error occurs (like an invalid ID format), send a 500 internal server error
+        res.status(500).json({ message: err.message });
+    }
+});
+
+
 
 // Start the server
 const PORT = process.env.PORT || 5000;
