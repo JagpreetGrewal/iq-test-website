@@ -1,4 +1,4 @@
-import SelectQuiz from './SelectQuiz';
+import SelectQuiz from '../SelectQuiz';
 
 export default function Home() {
 
