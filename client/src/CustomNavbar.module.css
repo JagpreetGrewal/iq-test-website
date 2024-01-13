@@ -1,0 +1,25 @@
+.customNavbar {
+    background-color: #b8b8ff;
+    /* Light purple color */
+}
+
+.navbarBrand {
+    font-size: 40px !important;
+    font-weight: bold;
+    color: #f8f7ff !important;
+    padding-right: 10px;
+    border-right: 2px solid #f8f7ff;
+    /* Adjust the size as needed */
+}
+
+.navLink {
+    font-size: 30px !important;
+    color: #f8f7ff !important;
+    font-weight: bold;
+
+
+}
+
+.navLink:hover {
+    color: rgb(182, 127, 255) !important;
+}

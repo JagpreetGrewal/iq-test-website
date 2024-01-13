@@ -1,36 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { styled } from '@mui/system';
+import Button from '@mui/material/Button';
 
-const Container = styled('div')({
+import styles from './SelectQuiz.module.css';
 
-    border: '1px solid #ccc',
-    boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
-    padding: '20px',
-    textAlign: 'center',
-    width: '30%',
 
-});
-
-const SelectProblemSet = styled('div')({
-    display: 'flex',
-    justifyContent: 'center'
-})
-
-const Title = styled('h1')({
-    fontFamily: 'Arial, sans-serif', // Change the font as needed
-    fontSize: '24px',
-    fontWeight: 'bold',
-    marginBottom: '20px'
-});
-
-const ButtonContainer = styled('div')({
-    display: 'flex',
-    justifyContent: 'center',
-    '& button': {
-        margin: '0 10px'
-    }
-});
 
 export default function SelectQuiz() {
 
@@ -55,17 +29,20 @@ export default function SelectQuiz() {
     }, []);
 
     return (
-        <SelectProblemSet>
-            <Container>
-                <Title>Select Quiz</Title>
-                <ButtonContainer>
+        <div className={styles.selectProblemSet}>
+            <div className={styles.container}>
+                <h1 className={styles.title}>Select Quiz</h1>
+                <div className={styles.buttonContainer}>
                     {problemSets.map((problemSet) => (
-                        <Link key={problemSet._id} to={`/quiz/${problemSet._id}`} style={{ textDecoration: 'none' }}>
-                            <button>{problemSet.setName}</button>
+                        <Link className={styles.customLink} key={problemSet._id} to={`/quiz/${problemSet._id}`} style={{ textDecoration: 'none' }}>
+                            <button className={styles.customButton} >
+                                {problemSet.setName}
+                            </button>
                         </Link>
                     ))}
-                </ButtonContainer>
-            </Container>
-        </SelectProblemSet>
+                </div>
+            </div>
+        </div >
+
     );
 }

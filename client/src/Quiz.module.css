@@ -1,0 +1,12 @@
+.quizContainerParent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+.quizContainer {
+    display: flex;
+    flex-direction: column;
+    background-color: #9381ff;
+}

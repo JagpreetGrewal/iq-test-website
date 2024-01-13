@@ -2,14 +2,15 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import QuizQuestionOptions from '../QuizQuestionOptions';
-
+import styles from '../Quiz.module.css';
 
 function Quiz() {
     let { id } = useParams(); // This captures the :id from the URL
     let navigate = useNavigate();
+
     const [quiz, setQuiz] = useState();//holds quiz data
     const [currQuestion, setCurrQuestion] = useState(0); //holds index of question to be currently displayed
-    const [answers, setAnswers] = useState([]); //holds user answers
+    const [answers, setAnswers] = useState([]); //holds user answers to questions for quiz 
 
 
     console.log(`answers: ${answers}`)
@@ -48,6 +49,12 @@ function Quiz() {
     }
 
     const checkAnswers = () => {
+
+        if (answers.length < quiz.questions.length) {
+            alert("must complete all questions before submitting.")
+            return null;
+        }
+
         let newScore = 0;
 
         quiz.questions.forEach((question, index) => {
@@ -65,33 +72,37 @@ function Quiz() {
 
     return (
         <div>
-            <h2>Quiz ID: {id}</h2>
+
 
             {quiz ? (
                 <>
-                    <li>{quiz.questions[currQuestion].question}</li>
+                    <div className={styles.quizContainerParent}>
+                        <div className={styles.quizContainer} >
+                            <h3>{quiz.questions[currQuestion].question}</h3>
 
-                    <QuizQuestionOptions
-                        options={quiz.questions[currQuestion].options}
-                        answers={answers}
-                        setAnswers={setAnswers}
-                        questionIndex={currQuestion}
-                    />
+                            <QuizQuestionOptions
+                                options={quiz.questions[currQuestion].options}
+                                answers={answers}
+                                setAnswers={setAnswers}
+                                questionIndex={currQuestion}
+                            />
 
-                    <div>
-                        <button onClick={previousQuestion}>previous question</button>
-                        <button onClick={nextQuestion}>next question</button>
-                        {currQuestion === quiz.questions.length - 1 ? <button onClick={checkAnswers}>Submit Quiz</button> : null}
+                            <div>
+                                <button onClick={previousQuestion}>previous question</button>
+                                <button onClick={nextQuestion}>next question</button>
+                                {currQuestion === quiz.questions.length - 1 ? <button onClick={checkAnswers}>Submit Quiz</button> : null}
+                            </div>
+                        </div>
                     </div>
 
-
                 </>
-            ) : null}
+            ) : null
+            }
 
 
 
 
-        </div>
+        </div >
     );
 
 }

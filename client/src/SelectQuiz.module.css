@@ -1,0 +1,62 @@
+/* SelectQuiz.module.css */
+
+.container {
+    border: 1px solid #ccc;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1),
+        0 0 10px 5px rgba(171, 114, 224, 0.5);
+    /* Purple glow */
+    padding: 20px;
+    text-align: center;
+    width: 30%;
+    background-color: #b8b8ff;
+    border-radius: 20px;
+}
+
+
+.selectProblemSet {
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.title {
+    font-family: Arial, sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #f8f7ff;
+}
+
+.buttonContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.customButton {
+    border: 1px solid #ccc;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1),
+        0 0 10px 5px rgba(171, 114, 224, 0.5);
+    /* Purple glow */
+    border-radius: 10px !important;
+    width: 100%;
+    text-align: left;
+    background-color: #a798ff;
+    color: #f8f7ff;
+    font-size: larger;
+    font-weight: bold;
+
+}
+
+.customButton:hover {
+    background-color: rgb(154, 154, 255);
+
+}
+
+.customLink {
+    width: 100%;
+    margin-bottom: 10px;
+
+}

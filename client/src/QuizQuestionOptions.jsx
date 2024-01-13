@@ -15,7 +15,7 @@ export default function QuizQuestionOptions({ options, answers, setAnswers, ques
 
     return (
         <FormControl>
-            <FormLabel>Options:</FormLabel>
+            <FormLabel></FormLabel>
             <RadioGroup
                 aria-labelledby="demo-radio-buttons-group-label"
                 name="radio-buttons-group"
