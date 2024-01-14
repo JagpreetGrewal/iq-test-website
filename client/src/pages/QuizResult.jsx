@@ -1,18 +1,22 @@
 import React from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 
+import styles from '../QuizResult.module.css';
+
 function QuizResult() {
 
     let { id } = useParams();
 
     const location = useLocation();
-    const { score, total } = location.state;
+    const { score, total, name } = location.state;
 
     return (
-        <div>
-            <h2>Quiz {id} Results</h2>
-            <p>Your score: {score} out of {total}</p>
-            {/* Additional result display */}
+        <div className={styles.parentContainer}>
+            <div className={styles.container}>
+                <h2 className={styles.title}>{name} Quiz Complete</h2>
+                <p className={styles.scoreParagraph}>Your score: {score}/{total}</p>
+                {/* Additional result display */}
+            </div>
         </div>
     );
 }

@@ -4,6 +4,8 @@ import React, { useEffect, useState } from 'react';
 import QuizQuestionOptions from '../QuizQuestionOptions';
 import styles from '../Quiz.module.css';
 
+import Button from '@mui/material/Button';
+
 function Quiz() {
     let { id } = useParams(); // This captures the :id from the URL
     let navigate = useNavigate();
@@ -66,7 +68,7 @@ function Quiz() {
         });
 
 
-        navigate(`/quiz/${id}/result`, { state: { score: newScore, total: quiz.questions.length } });
+        navigate(`/quiz/${id}/result`, { state: { score: newScore, total: quiz.questions.length, name: quiz.setName } });
         // To see the updated score, use useEffect or another method
     }
 
@@ -78,7 +80,7 @@ function Quiz() {
                 <>
                     <div className={styles.quizContainerParent}>
                         <div className={styles.quizContainer} >
-                            <h3>{quiz.questions[currQuestion].question}</h3>
+                            <h3 className={styles.questionTitle}>{quiz.questions[currQuestion].question}</h3>
 
                             <QuizQuestionOptions
                                 options={quiz.questions[currQuestion].options}
@@ -87,12 +89,16 @@ function Quiz() {
                                 questionIndex={currQuestion}
                             />
 
-                            <div>
-                                <button onClick={previousQuestion}>previous question</button>
-                                <button onClick={nextQuestion}>next question</button>
-                                {currQuestion === quiz.questions.length - 1 ? <button onClick={checkAnswers}>Submit Quiz</button> : null}
+                            <div className={styles.buttonContainer}>
+                                <Button className={styles.customButton} onClick={previousQuestion} variant='contained'>previous question</Button>
+                                {currQuestion === quiz.questions.length - 1 ? <Button className={styles.submitButton} onClick={checkAnswers} variant='contained'>Submit Quiz</Button> : null}
+                                {currQuestion === quiz.questions.length - 1 ? null : <Button className={styles.customButton} onClick={nextQuestion} variant='contained'>next question</Button>}
+
+
                             </div>
+
                         </div>
+
                     </div>
 
                 </>
