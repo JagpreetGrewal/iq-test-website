@@ -15,6 +15,7 @@
     /* Purple glow */
     border-radius: 10px;
     padding: 20px;
+    padding-top: 5px;
     width: 60%;
 
 
@@ -60,6 +61,22 @@
     color: #f8f7ff;
 }
 
+.timer {
+    color: #f6ff7a;
+    margin-top: 0px;
+    margin-right: 10px;
+    font-weight: bold;
+    font-size: larger;
+}
+
+.timerContainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: right;
+
+}
+
 @media screen and (max-width: 800px) {
 
     .customButton,
@@ -79,6 +96,8 @@
     }
 
 }
+
+
 
 @media screen and (max-width: 700px) {
 

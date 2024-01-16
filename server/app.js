@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const ProblemSet = require('./models/ProblemSets');
+const Score = require('./models/userScores');
 require('dotenv').config({ path: '../.env' });
 const app = express();
 
@@ -51,7 +52,16 @@ app.get('/api/problemsets/:id', async (req, res) => {
     }
 });
 
-
+app.post('/api/submit-score', async (req, res) => {
+    try {
+        const { problemSetId, score, totalQuestions } = req.body;
+        const newScore = new Score({ problemSetId, score, totalQuestions });
+        await newScore.save();
+        res.status(201).send('Score submitted successfully');
+    } catch (err) {
+        res.status(500).send('Server error');
+    }
+});
 
 // Start the server
 const PORT = process.env.PORT || 5000;

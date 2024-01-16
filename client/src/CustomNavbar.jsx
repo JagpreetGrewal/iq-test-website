@@ -12,8 +12,8 @@ export default function CustomNavbar() {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         <Nav.Link as={Link} to="/" className={styles.navLink}>Home</Nav.Link>
-                        <Nav.Link as={Link} to="/" className={styles.navLink}>Statistics</Nav.Link>
-                        <Nav.Link as={Link} to="/" className={styles.navLink}>Donate</Nav.Link>
+                        <Nav.Link as={Link} to="/statistics" className={styles.navLink}>Statistics</Nav.Link>
+                        <Nav.Link as={Link} to="/donate" className={styles.navLink}>Donate</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

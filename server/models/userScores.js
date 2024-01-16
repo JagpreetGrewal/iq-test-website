@@ -13,9 +13,14 @@ const scoreSchema = new mongoose.Schema({
     recordedAt: {
         type: Date,
         default: Date.now
-    }
+    },
+    totalQuestions: {
+        type: Number,
+        required: true
+    },
 });
 
 const Score = mongoose.model('Score', scoreSchema);
 
 module.exports = Score;
+
