@@ -63,6 +63,17 @@ app.post('/api/submit-score', async (req, res) => {
     }
 });
 
+app.get('/api/get-scores', async (req, res) => {
+    try {
+        const scores = await Score.find({});
+        res.json(scores);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
+
+
 // Start the server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

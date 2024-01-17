@@ -1,0 +1,8 @@
+.tableContainer {
+    width: 70% !important;
+}
+
+.parentContainer {
+    display: flex;
+    justify-content: center;
+}

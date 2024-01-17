@@ -1,0 +1,53 @@
+
+
+export const fetchQuiz = async (quizId, setQuiz) => {
+    try {
+        const response = await fetch(`http://localhost:5000/api/problemsets/${quizId}`);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const quizData = await response.json();
+        setQuiz(quizData);
+    } catch (error) {
+        console.error("Fetch error:", error);
+        // Handle the error state as needed
+    }
+};
+
+
+export const postScore = async (problemSetId, score, totalQuestions) => {
+    try {
+        const response = await fetch('http://localhost:5000/api/submit-score', { // Adjust the URL as needed
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ problemSetId, score, totalQuestions }),
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok.');
+        }
+
+        const data = await response.text();
+        console.log(data); // Handle the successful response
+    } catch (error) {
+        console.error('Error while submitting the test:', error);
+    }
+};
+
+
+export const quizScore = (quizQuestions, userAnswers) => {
+    let score = 0;
+
+    quizQuestions.forEach((question, index) => {
+        // Assuming the 'answers' array stores the index of the selected option
+        // And 'question.answer' is the index of the correct answer
+        if (parseInt(userAnswers[index]) === question.answer) {
+            score += 1;
+        }
+    });
+
+    return score;
+
+}
