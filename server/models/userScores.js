@@ -6,10 +6,14 @@ const scoreSchema = new mongoose.Schema({
         required: true,
         ref: 'ProblemSet'
     },
+    problemSetName: {
+        type: String,
+    },
     score: {
         type: Number,
         required: true
     },
+
     recordedAt: {
         type: Date,
         default: Date.now

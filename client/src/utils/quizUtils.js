@@ -15,14 +15,14 @@ export const fetchQuiz = async (quizId, setQuiz) => {
 };
 
 
-export const postScore = async (problemSetId, score, totalQuestions) => {
+export const postScore = async (problemSetId, problemSetName, score, totalQuestions) => {
     try {
-        const response = await fetch('http://localhost:5000/api/submit-score', { // Adjust the URL as needed
+        const response = await fetch('http://localhost:5000/api/scores', { // Adjust the URL as needed
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ problemSetId, score, totalQuestions }),
+            body: JSON.stringify({ problemSetId, problemSetName, score, totalQuestions }),
         });
 
         if (!response.ok) {

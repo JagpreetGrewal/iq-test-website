@@ -1,8 +1,24 @@
 .tableContainer {
-    width: 70% !important;
+    width: 50% !important;
+    height: 600px !important;
+    background-color: #9381ff !important;
+    border: 1px solid #ccc !important;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1),
+        0 0 10px 5px rgba(171, 114, 224, 0.5) !important;
+    /* Purple glow */
+    border-radius: 3px !important;
+
 }
 
-.parentContainer {
-    display: flex;
-    justify-content: center;
+
+
+.tableCell {
+    font-size: 20px !important;
+    color: #f8f7ff !important;
+}
+
+.headerCell {
+    font-size: 20px;
+    color: #f8f7ff !important;
+    font-weight: bold !important;
 }

@@ -52,7 +52,7 @@ function Quiz() {
 
         console.log(`timer complete, auto submit with score of : ${newScore}`)
 
-        postScore(id, newScore, quiz.questions.length);
+        postScore(id, quiz.setName, newScore, quiz.questions.length);
 
         navigate(`/quiz/${id}/result`, { state: { score: newScore, total: quiz.questions.length, name: quiz.setName } });
         // To see the updated score, use useEffect or another method
@@ -72,7 +72,7 @@ function Quiz() {
 
         console.log(`quiz submitted with score of: ${newScore}`);
 
-        postScore(id, newScore, quiz.questions.length);
+        postScore(id, quiz.setName, newScore, quiz.questions.length);
 
         navigate(`/quiz/${id}/result`, { state: { score: newScore, total: quiz.questions.length, name: quiz.setName } });
         // To see the updated score, use useEffect or another method
@@ -105,6 +105,7 @@ function Quiz() {
 
             {quiz ? (
                 <>
+
                     <div className={styles.quizContainerParent}>
 
                         <div className={styles.quizContainer} >

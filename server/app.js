@@ -52,10 +52,10 @@ app.get('/api/problemsets/:id', async (req, res) => {
     }
 });
 
-app.post('/api/submit-score', async (req, res) => {
+app.post('/api/scores', async (req, res) => {
     try {
-        const { problemSetId, score, totalQuestions } = req.body;
-        const newScore = new Score({ problemSetId, score, totalQuestions });
+        const { problemSetId, problemSetName, score, totalQuestions } = req.body;
+        const newScore = new Score({ problemSetId, problemSetName, score, totalQuestions });
         await newScore.save();
         res.status(201).send('Score submitted successfully');
     } catch (err) {
@@ -63,7 +63,7 @@ app.post('/api/submit-score', async (req, res) => {
     }
 });
 
-app.get('/api/get-scores', async (req, res) => {
+app.get('/api/scores', async (req, res) => {
     try {
         const scores = await Score.find({});
         res.json(scores);
@@ -72,6 +72,15 @@ app.get('/api/get-scores', async (req, res) => {
     }
 });
 
+app.get('/api/scores/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const scores = await Score.find({ problemSetId: id });
+        res.json(scores);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
 
 
 // Start the server
