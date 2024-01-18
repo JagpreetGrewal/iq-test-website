@@ -16,7 +16,7 @@ function Quiz() {
     const [quiz, setQuiz] = useState();//holds quiz data
     const [currQuestion, setCurrQuestion] = useState(0); //holds index of question to be currently displayed
     const [answers, setAnswers] = useState([]); //holds user answers to questions for quiz 
-    const [time, setTime] = useState(10); // 300 seconds for 5 minutes
+    const [time, setTime] = useState(300); // 300 seconds for 5 minutes
 
 
 
