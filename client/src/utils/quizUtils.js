@@ -32,7 +32,7 @@ export const postScore = async (problemSetId, problemSetName, score, totalQuesti
         const data = await response.text();
         console.log(data); // Handle the successful response
     } catch (error) {
-        console.error('Error while submitting the test:', error);
+        console.error('Error with post request:', error);
     }
 };
 

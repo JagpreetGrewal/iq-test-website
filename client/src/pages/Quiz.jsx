@@ -44,27 +44,27 @@ function Quiz() {
 
 
 
-    const autoSubmit = () => {
-
-        console.log(`answers in auto-submission: ${answers}`)
+    const autoSubmit = async () => {
+        console.log(`answers in auto-submission: ${answers}`);
 
         let newScore = quizScore(quiz.questions, answers);
 
-        console.log(`timer complete, auto submit with score of : ${newScore}`)
+        console.log(`timer complete, auto submit with score of : ${newScore}`);
 
-        postScore(id, quiz.setName, newScore, quiz.questions.length);
+        try {
+            await postScore(id, quiz.setName, newScore, quiz.questions.length);
+            navigate(`/quiz/${id}/result`, { state: { score: newScore, total: quiz.questions.length, name: quiz.setName } });
+        } catch (error) {
+            console.error('Error auto-submitting score:', error);
+            // Handle error (e.g., show a message to the user)
+        }
+    };
 
-        navigate(`/quiz/${id}/result`, { state: { score: newScore, total: quiz.questions.length, name: quiz.setName } });
-        // To see the updated score, use useEffect or another method
-
-    }
-
-    const submitTest = () => {
-
-        console.log(`answers in submission: ${answers}`)
+    const submitTest = async () => {
+        console.log(`answers in submission: ${answers}`);
 
         if (answers.length < quiz.questions.length) {
-            alert("must complete all questions before submitting.")
+            alert("must complete all questions before submitting.");
             return null;
         }
 
@@ -72,11 +72,14 @@ function Quiz() {
 
         console.log(`quiz submitted with score of: ${newScore}`);
 
-        postScore(id, quiz.setName, newScore, quiz.questions.length);
-
-        navigate(`/quiz/${id}/result`, { state: { score: newScore, total: quiz.questions.length, name: quiz.setName } });
-        // To see the updated score, use useEffect or another method
-    }
+        try {
+            await postScore(id, quiz.setName, newScore, quiz.questions.length);
+            navigate(`/quiz/${id}/result`, { state: { score: newScore, total: quiz.questions.length, name: quiz.setName } });
+        } catch (error) {
+            console.error('Error submitting score:', error);
+            // Handle error
+        }
+    };
 
 
 
